@@ -3,9 +3,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title><ul>
   <li>메뉴</li>
-  <li><a href="a"><h3>a페이지</h3></a></li>
-  <li><a href="b"><h3>b페이지</h3></a></li>
-  <li><a href="c"><h3>c페이지</h3></a></li>
+  <li><a href="/a"><h3>a페이지</h3></a></li>
+  <li><a href="/b"><h3>b페이지</h3></a></li>
+  <li><a href="/c"><h3>c페이지</h3></a></li>
 </ul><div id="root">
 hello
 </div><footer>kdt 클래스</footer>

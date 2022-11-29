@@ -1,6 +1,6 @@
 <ul>
   <li>메뉴</li>
-  <li><a href="a"><h3>a페이지</h3></a></li>
-  <li><a href="b"><h3>b페이지</h3></a></li>
-  <li><a href="c"><h3>c페이지</h3></a></li>
+  <li><a href="/a"><h3>a페이지</h3></a></li>
+  <li><a href="/b"><h3>b페이지</h3></a></li>
+  <li><a href="/c"><h3>c페이지</h3></a></li>
 </ul>
