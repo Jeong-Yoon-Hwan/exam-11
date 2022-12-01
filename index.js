@@ -1,20 +1,27 @@
+const { execFile } = require("child_process");
 const fs = require("fs");
 const http = require('http'); 
-
-
-
+const { json } = require("stream/consumers");
 
 function fileRead(filename){
   const text = fs.readFileSync(`${filename}.txt`,'utf-8');
   return text
 }
 
-
 let str =`<!DOCTYPE html>`
 str += fileRead('head');
 str += fileRead('header');
 str += fileRead('main');
 str += fileRead('footer');
+
+const arr = ['head','header','main','footer']
+function test(name){
+  let str =`<!DOCTYPE html>`
+  name.forEach(file => {
+    str += fileRead(`${file}`)
+  });
+}
+
 
 
 fs.writeFile('./index.txt',str,err=>{
@@ -24,25 +31,34 @@ fs.writeFile('./index.txt',str,err=>{
   }
 })
 
+function router(url){
+  let name = url
+  let text = fs.readFileSync(`${url}.txt`,'utf-8')
+  
+  return text
+}
+
+
 const server = http.createServer(function(request,response){ 
-  let{url,method} = request
-  if(method === "GET"){
+  let{method} = request
+  if(method === "GET"){ 
+    let url = request.url
+    if(url !== '/favicon.ico'){
+      console.log(url)
+      response.writeHead(200)
+      response.write(str + router(url.substring(1)),'utf-8')
+      response.end()
+    }
+  }else if(method === 'POST'){
+    request.on('data',function(data){
+      const textData = {
+        str : data.toString(),
+        time : new Date()
+      }
+      const dataJSON = JSON.stringify(textData)
+      fs.writeFileSync('test-json.json',dataJSON)
+    })
     
-    if(url === "/a"){
-      response.writeHead(200)
-      response.write(str + fileRead('a'),'utf-8')
-      response.end()
-    }
-    if(url === "/b"){
-      response.writeHead(200)
-      response.write(str+fileRead('b'),'utf-8')
-      response.end()
-    }
-    if(url === "/c"){
-      response.writeHead(200)
-      response.write(str+fileRead('c'),'utf-8')
-      response.end()
-    }
   }
 
   response.writeHead(200,{'Content-Type':'text/html'});
