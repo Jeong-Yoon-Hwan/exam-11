@@ -7,5 +7,10 @@
   <li><a href="/b"><h3>b페이지</h3></a></li>
   <li><a href="/c"><h3>c페이지</h3></a></li>
 </ul><div id="root">
-hello
+<form method="POST" >
+  <input type="text"  name="test" style="width:200px; height:35px; font-size:20px">
+  <input type="submit" value="클릭">
+</form>
+<h2 id="result"></h2>
+
 </div><footer>kdt 클래스</footer>
